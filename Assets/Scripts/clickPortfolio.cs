@@ -1,26 +1,30 @@
 using System.Collections;
 using System.Collections.Generic;
-using Microsoft.Unity.VisualStudio.Editor;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class clickPortfolio : MonoBehaviour
 {
-    [SerializeField] GameObject canvas;
-    SpriteMask mask;
-    [SerializeField] Sprite sprite;
+    [SerializeField] GameObject m_Canvas;
+    [SerializeField] GameObject canvasRender;
+    [SerializeField] Sprite replacement;
+    Image m_Image;
+    Sprite sprite;
 
     private void Start()
     {
-        mask = GetComponent<SpriteMask>();
+        m_Image = canvasRender.GetComponent<Image>();
     }
+
     private void OnMouseDown()
     {
-        if (canvas != null)
+        if (m_Canvas != null)
         {
-            canvas.SetActive(true);
+            Time.timeScale = 0f;
+            m_Canvas.SetActive(true);
+            m_Image.sprite = replacement;
             print("print portfolio image");
         }
-
     }
 }
